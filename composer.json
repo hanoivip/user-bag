@@ -2,5 +2,22 @@
     "name": "hanoivip/user-bag",
     "type": "library",
     "license": "MIT",
-    "require": {}
+    "require": {
+		"php" : ">=7.0.0",
+		"laravel/framework" : "5.5.*",
+		"hanoivip/events" : "dev-master"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Hanoivip\\UserBag\\" : "src/"
+		}
+	},
+	"extra" : {
+		"laravel" : {
+			"providers" : [
+				"Hanoivip\\UserBag\\LibServiceProvider",
+				"Hanoivip\\UserBag\\EventServiceProvider"
+			]
+		}
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanoivip\GateClient;
+namespace Hanoivip\UserBag;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;
