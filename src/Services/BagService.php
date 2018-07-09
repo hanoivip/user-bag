@@ -26,14 +26,15 @@ class BagService implements IBag
         if (empty($item))
         {
             $item = new UserItem();
-            $item->user_id = $uid;
+            $item->user_id = $this->uid;
             $item->item_id = $itemId;
+            $item->item_title = $itemId;
             $item->item_count = min($count, $this->maxItemCount());
             $item->save();
         }
         else
         {
-            $item->item_count = min($item->$item_count + $count, 
+            $item->item_count = min($item->item_count + $count, 
                                 $this->maxItemCount());
             $item->save();
         }
@@ -57,12 +58,12 @@ class BagService implements IBag
     {
         $items = null;
         if (empty($itemId))
-            $items = UserItem::where('user_id', $uid)
+            $items = UserItem::where('user_id', $this->uid)
                     ->where('item_count', '>', 0)
                     ->where('exists', true)
                     ->get();
         else 
-            $items = UserItem::where('user_id', $uid)
+            $items = UserItem::where('user_id', $this->uid)
                     ->where('item_id', $itemId)
                     ->where('item_count', '>', 0)
                     ->where('exists', true)
@@ -74,6 +75,18 @@ class BagService implements IBag
             return $items->first();
         return $items->all();
     }
+    
+    public function enough($itemId, $count)
+    {
+        if (empty($itemId) || $count <= 0)
+            return false;
+        $item = $this->list($itemId);
+        if (empty($item) ||
+            $item->item_count < $count)
+            return false;
+        return true;    
+    }
+
 
     
 }

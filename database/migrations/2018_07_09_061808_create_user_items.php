@@ -14,7 +14,7 @@ class CreateUserItems extends Migration
             $table->string('item_id');
             $table->integer('item_count');
             $table->string('item_title');
-            $table->boolean('exists');
+            $table->boolean('exists')->default(true);
             $table->timestamps();
         });
     }

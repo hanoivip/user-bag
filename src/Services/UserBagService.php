@@ -13,7 +13,7 @@ class UserBagService
      * @param number $type
      * @return IBag
      */
-    function getUserBag($uid, $type)
+    function getUserBag($uid, $type = 0)
     {
         switch ($type)
         {

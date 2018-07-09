@@ -33,4 +33,5 @@ interface IBag
      */
     function subItem($itemId, $count);
     
+    function enough($itemId, $count);
 }
